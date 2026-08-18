@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 def run_ingestion(folder_id: str | None = None) -> None:
     """Run the full pipeline: Drive → Extract → Chunk → Embed → Pinecone."""
     logger.info("=" * 60)
-    logger.info("Starting BRAC RSP Knowledge Ingestion Pipeline")
+    logger.info("Starting Knowledge Ingestion Pipeline")
     logger.info("=" * 60)
 
     files = list_drive_files(folder_id)

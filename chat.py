@@ -26,11 +26,9 @@ tools = [
         "name": "search_knowledge_base",
         "description": (
             "Retrieve relevant information when the user asks any question "
-            "about BRAC Road Safety Programme (RSP) employee policies, "
-            "including HR leave rules, attendance, working hours, road safety "
-            "and vehicle operations, field travel allowances (TA/DA), emergency "
-            "accident response procedures, health insurance benefits, or "
-            "employee code of conduct and whistleblowing."
+            "about company employee policies, including HR leave rules, "
+            "attendance, working hours, travel allowances, emergency response "
+            "procedures, health insurance benefits, or employee code of conduct."
         ),
         "parameters": {
             "type": "object",
@@ -48,7 +46,7 @@ tools = [
 ]
 
 SYSTEM_PROMPT = (
-    "You are a helpful BRAC Road Safety Programme (RSP) assistant. "
+    "You are a helpful company HR policy assistant. "
     "Answer questions about employee policies using the search_knowledge_base "
     "tool. Always cite your sources. If you cannot find the answer, say so honestly."
 )
@@ -138,11 +136,11 @@ def chat(user_message: str, history: list[dict]) -> tuple[str, list[dict]]:
 # Streamlit Chat UI
 # --------------------------------------------------------------
 
-st.set_page_config(page_title="BRAC RSP FAQ Bot", page_icon="🏢", layout="centered")
+st.set_page_config(page_title="HR Policy FAQ Bot", page_icon="🏢", layout="centered")
 
 with st.sidebar:
-    st.title("🏢 BRAC RSP FAQ Bot")
-    st.write("AI assistant for BRAC Road Safety Programme employee policies.")
+    st.title("🏢 HR Policy FAQ Bot")
+    st.write("AI assistant for company employee policies and knowledge base.")
 
     if st.button("Clear Chat"):
         st.session_state.messages = []
@@ -150,13 +148,13 @@ with st.sidebar:
         st.rerun()
 
     st.markdown("### Example Questions")
-    st.markdown("- What is the leave policy for RSP employees?")
+    st.markdown("- What is the leave policy?")
     st.markdown("- How many annual leave days are allowed?")
-    st.markdown("- What is the emergency accident response procedure?")
-    st.markdown("- What are the field travel allowance (TA/DA) rules?")
+    st.markdown("- What is the emergency response procedure?")
+    st.markdown("- What are the travel allowance rules?")
 
-st.title("🏢 BRAC RSP FAQ Bot")
-st.write("Ask me anything about BRAC RSP employee policies, HR rules, leave, and travel.")
+st.title("🏢 HR Policy FAQ Bot")
+st.write("Ask me anything about employee policies, HR rules, leave, and travel.")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -167,7 +165,7 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-if prompt := st.chat_input("Ask about BRAC RSP policies..."):
+if prompt := st.chat_input("Ask about company policies..."):
     with st.chat_message("user"):
         st.markdown(prompt)
     st.session_state.messages.append({"role": "user", "content": prompt})

@@ -1,6 +1,6 @@
-# BRAC RSP Customer Support RAG FAQ Bot
+# HR Policy FAQ Bot
 
-AI-powered chatbot for BRAC Road Safety Programme employee policy queries — built with OpenAI, Pinecone, and Streamlit.
+AI-powered RAG chatbot for employee policy queries — built with OpenAI, Pinecone, and Streamlit.
 
 ## Architecture
 
@@ -30,23 +30,21 @@ streamlit run chat.py
 ## Project Structure
 
 ```
-brac-rsp-faq-bot/
 ├── config.py           # API clients & constants
-├── ingest.py           # Drive → Extract → Chunk → Embed → Pinecone
+├── extract.py          # Google Drive + PDF/DOCX extraction
+├── chunk.py            # Text chunking
+├── embed.py            # Embedding + Pinecone store/search
 ├── chat.py             # RAG Agent + Streamlit Chat UI
+├── ingest.py           # Pipeline orchestrator
 ├── requirements.txt
-├── .env / .env.example
-├── .gitignore
-├── service_account.json   # Google Drive auth (gitignored)
-├── scripts/               # Dev utilities
+├── .env.example
 └── tests/
-    └── test_pipeline.py
 ```
 
 ## Tech Stack
 
 - **OpenAI** — GPT-4o-mini (chat) + text-embedding-3-small (embeddings)
 - **Pinecone** — Vector database
-- **Google Drive API** — Document source (service account auth)
+- **Google Drive API** — Document source (service account)
 - **Streamlit** — Chat interface
 - **PyPDF2 / python-docx** — Text extraction
